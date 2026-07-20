@@ -8,6 +8,15 @@ Application web open source avec comptes personnels, rôles et base partagée.
 - **Conseil d'administration** : mêmes vues + gestion des missions/affectations + plans de défilé.
 - **Administrateur** : droits complets et attribution des rôles.
 
+## Version 2
+
+- Planning général sous forme de Gantt, filtrable par journée et événement, avec une ligne par ressource bénévole.
+- Modification et suppression des missions et affectations.
+- Modification et suppression des défilés et de chaque post-it.
+- Organigramme hiérarchique des responsables, visible par les bénévoles et modifiable par le CA/les administrateurs.
+
+Pour mettre à jour une installation existante, exécuter d'abord `migration_v2.sql` dans **Supabase > SQL Editor**, puis remplacer les fichiers du site sur GitHub. Le script de migration conserve toutes les données existantes.
+
 L'onglet Défilé est protégé côté interface **et côté base de données**. Chaque journée possède son propre plan. Les post-it (chars, associations, groupes de musique…) se déplacent à la souris ou au doigt, avec ordre, responsable, téléphone, couleur et notes.
 
 ## Mise en ligne

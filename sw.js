@@ -1,0 +1,5 @@
+const CACHE='rosiere-v4-identite';
+const ASSETS=['./','./index.html','./config.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./logo-rosiere.png'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.hostname.includes('supabase.co')||u.pathname.endsWith('config.js')||u.pathname.endsWith('index.html')||u.pathname.endsWith('/')){e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));return}e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))});
